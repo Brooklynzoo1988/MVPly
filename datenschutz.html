@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Datenschutzerklärung — MVPLY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Cabinet+Grotesk:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #ffffff;
+  --bg2: #f8f8fc;
+  --bg3: #f0f0f8;
+  --border: rgba(0,0,0,0.08);
+  --border2: rgba(0,0,0,0.15);
+  --text: #0a0a14;
+  --text2: #5a5a7a;
+  --text3: #9898b8;
+  --blue: #0066FF;
+  --blue-light: #e0ecff;
+  --purple: #8A3FFC;
+  --green: #00c96b;
+  --font-display: 'Clash Display', sans-serif;
+  --font-body: 'Cabinet Grotesk', sans-serif;
+  --r-lg: 20px;
+  --r-pill: 999px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg2);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 48px;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-display); font-size: 22px; font-weight: 700;
+  letter-spacing: -0.5px; color: var(--text); text-decoration: none;
+}
+.logo-mark {
+  width: 34px; height: 34px;
+  background: linear-gradient(135deg, var(--blue), var(--purple));
+  border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: #fff; font-weight: 800;
+}
+.nav-badge {
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+  color: var(--blue); border: 1.5px solid var(--blue);
+  padding: 2px 9px; border-radius: var(--r-pill); text-transform: uppercase;
+}
+.nav-back {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 14px; font-weight: 600; color: var(--text2);
+  padding: 8px 20px; border-radius: var(--r-pill);
+  border: 1.5px solid var(--border2); transition: all 0.2s;
+}
+.nav-back:hover { color: var(--blue); border-color: var(--blue); text-decoration: none; }
+
+/* ─── PAGE ─── */
+.page-wrap { max-width: 720px; margin: 0 auto; padding: 100px 40px 80px; }
+
+.page-eyebrow {
+  display: inline-flex; align-items: center;
+  background: var(--blue-light); color: var(--blue);
+  border-radius: var(--r-pill); padding: 5px 14px;
+  font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.page-title {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 7vw, 80px);
+  font-weight: 700; letter-spacing: -3px; line-height: 1.0;
+  margin-bottom: 12px; color: var(--text);
+}
+.page-date {
+  font-size: 13px; color: var(--text3); font-weight: 600;
+  margin-bottom: 48px; letter-spacing: 0.3px;
+}
+
+/* ─── CARDS ─── */
+.ds-card {
+  background: #fff; border-radius: 20px;
+  border: 1.5px solid var(--border);
+  overflow: hidden; margin-bottom: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+}
+.ds-section-label {
+  display: flex; align-items: center; gap: 10px;
+  padding: 24px 32px 0;
+  font-size: 11px; font-weight: 800; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--blue);
+  margin-bottom: 20px;
+}
+.ds-section-label::before {
+  content: ''; width: 18px; height: 2px;
+  background: var(--blue); flex-shrink: 0;
+}
+
+/* ─── RESPONSIBLE BLOCK ─── */
+.ds-responsible { padding: 0 32px 28px; }
+.ds-responsible h2 {
+  font-family: var(--font-display); font-size: 26px; font-weight: 700;
+  letter-spacing: -0.5px; margin-bottom: 4px;
+}
+.ds-company { font-size: 15px; font-weight: 700; color: var(--blue); margin-bottom: 14px; }
+.ds-address { font-size: 15px; color: var(--text2); line-height: 1.9; }
+.ds-contact-link { margin-top: 12px; font-size: 15px; font-weight: 600; }
+
+/* ─── PROSE ─── */
+.ds-prose { padding: 0 32px 28px; }
+.ds-prose h3 {
+  font-family: var(--font-display); font-size: 17px; font-weight: 700;
+  color: var(--text); margin-bottom: 10px; margin-top: 28px;
+}
+.ds-prose h3:first-child { margin-top: 0; }
+.ds-prose p {
+  font-size: 14px; color: var(--text2); line-height: 1.8; margin-bottom: 12px;
+}
+.ds-prose p:last-child { margin-bottom: 0; }
+.ds-prose ul {
+  margin: 8px 0 12px 20px; display: flex; flex-direction: column; gap: 6px;
+}
+.ds-prose ul li { font-size: 14px; color: var(--text2); line-height: 1.7; }
+
+/* ─── HIGHLIGHT BOX ─── */
+.ds-highlight {
+  background: var(--blue-light); border: 1px solid rgba(0,102,255,0.2);
+  border-radius: 12px; padding: 16px 20px; margin: 16px 0;
+  font-size: 14px; color: var(--text2); line-height: 1.7;
+}
+.ds-highlight strong { color: var(--blue); }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--text); color: rgba(255,255,255,0.5);
+  padding: 32px 0; text-align: center; font-size: 13px; margin-top: 60px;
+}
+footer a { color: rgba(255,255,255,0.4); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 600px) {
+  nav { padding: 12px 20px; }
+  .page-wrap { padding: 88px 16px 60px; }
+  .ds-section-label { padding: 20px 20px 0; }
+  .ds-responsible { padding: 0 20px 20px; }
+  .ds-prose { padding: 0 20px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="logo-mark">M</div>
+    MVPLY
+    <span class="nav-badge">Beta</span>
+  </a>
+  <a href="index.html" class="nav-back">← Zurück</a>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="page-eyebrow">Rechtliches</div>
+  <h1 class="page-title">Datenschutz&shy;erklärung</h1>
+  <p class="page-date">Stand: Mai 2025</p>
+
+  <!-- ── VERANTWORTLICHER ── -->
+  <div class="ds-card">
+    <div class="ds-section-label">Verantwortlicher</div>
+    <div class="ds-responsible">
+      <h2>Adrian Kocur</h2>
+      <div class="ds-company">MVPLY</div>
+      <div class="ds-address">
+        Wallensteinstr. 29<br>
+        80807 München<br>
+        Deutschland
+      </div>
+      <div class="ds-contact-link" style="margin-top:14px">
+        📞 <a href="tel:+491714792955">0171 / 4792955</a><br>
+        ✉️ <a href="mailto:adrian@alleyoop-saas.de">adrian@alleyoop-saas.de</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ERHEBUNG UND SPEICHERUNG ── -->
+  <div class="ds-card">
+    <div class="ds-section-label">Erhebung und Speicherung personenbezogener Daten</div>
+    <div class="ds-prose">
+      <h3>Welche Daten wir erheben</h3>
+      <p>Wenn Sie das Bewerbungsformular auf unserer Website ausfüllen, erheben wir folgende personenbezogene Daten:</p>
+      <ul>
+        <li>Vollständiger Name</li>
+        <li>E-Mail-Adresse</li>
+        <li>Telefonnummer / WhatsApp (optional)</li>
+        <li>LinkedIn-Profil-URL (optional)</li>
+        <li>Berufliche Angaben (Rolle, Erfahrung, Segment, Vertikal)</li>
+        <li>Performance-Daten (Quota Attainment, ACV, Sales Cycle)</li>
+        <li>Präferenzen (OTE, Remote, Verfügbarkeit, Standort, Sprachen)</li>
+        <li>Hochgeladene Dokumente (Lebenslauf, Zertifikate, Nachweise)</li>
+      </ul>
+
+      <h3>Zweck der Datenerhebung</h3>
+      <p>Die erhobenen Daten werden ausschließlich für folgende Zwecke verwendet:</p>
+      <ul>
+        <li>Prüfung und Verifikation Ihres Track Records</li>
+        <li>Matching mit passenden Unternehmen und Stellenangeboten</li>
+        <li>Kontaktaufnahme bei einem konkreten Match</li>
+        <li>Erstellung Ihrer persönlichen Vault-Karte (mit Ihrer Zustimmung)</li>
+      </ul>
+
+      <div class="ds-highlight">
+        <strong>Wichtig:</strong> Wir geben Ihre Daten ohne Ihre ausdrückliche Zustimmung nicht an Dritte weiter. Eine Weitergabe an potenzielle Arbeitgeber erfolgt nur nach Ihrer vorherigen Zustimmung im Einzelfall.
+      </div>
+    </div>
+  </div>
+
+  <!-- ── RECHTSGRUNDLAGE ── -->
+  <div class="ds-card">
+    <div class="ds-section-label">Rechtsgrundlage der Verarbeitung</div>
+    <div class="ds-prose">
+      <h3>DSGVO-Grundlagen</h3>
+      <p>Die Verarbeitung Ihrer personenbezogenen Daten erfolgt auf Basis folgender Rechtsgrundlagen gemäß der Datenschutz-Grundverordnung (DSGVO):</p>
+      <ul>
+        <li><strong>Art. 6 Abs. 1 lit. a DSGVO</strong> — Ihre Einwilligung, die Sie durch Absenden des Formulars erteilen</li>
+        <li><strong>Art. 6 Abs. 1 lit. b DSGVO</strong> — Anbahnung eines Vertragsverhältnisses (Vermittlungsdienstleistung)</li>
+        <li><strong>Art. 6 Abs. 1 lit. f DSGVO</strong> — Berechtigte Interessen zur Durchführung unserer Vermittlungstätigkeit</li>
+      </ul>
+      <p>Sie können Ihre Einwilligung jederzeit ohne Angabe von Gründen widerrufen. Die Rechtmäßigkeit der bis zum Widerruf erfolgten Datenverarbeitung bleibt davon unberührt.</p>
+    </div>
+  </div>
+
+  <!-- ── SPEICHERDAUER ── -->
+  <div class="ds-card">
+    <div class="ds-section-label">Speicherdauer</div>
+    <div class="ds-prose">
+      <h3>Wie lange wir Ihre Daten speichern</h3>
+      <p>Ihre Daten werden gespeichert, solange dies für die Zwecke der Vermittlung erforderlich ist oder Sie aktiv im MVPLY-Vault gelistet sein möchten.</p>
+      <p>Auf Ihren Wunsch hin werden Ihre Daten vollständig und unverzüglich gelöscht. Senden Sie dazu eine formlose E-Mail an <a href="mailto:adrian@alleyoop-saas.de">adrian@alleyoop-saas.de</a>.</p>
+      <p>Gesetzliche Aufbewahrungsfristen (z.B. steuerrechtliche Pflichten) bleiben hiervon unberührt.</p>
+    </div>
+  </div>
+
+  <!-- ── IHRE RECHTE ── -->
+  <div class="ds-card">
+    <div class="ds-section-label">Ihre Rechte</div>
+    <div class="ds-prose">
+      <h3>Betroffenenrechte gemäß DSGVO</h3>
+      <p>Sie haben jederzeit folgende Rechte bezüglich Ihrer personenbezogenen Daten:</p>
+      <ul>
+        <li><strong>Auskunftsrecht</strong> (Art. 15 DSGVO) — Auskunft über gespeicherte Daten</li>
+        <li><strong>Berichtigungsrecht</strong> (Art. 16 DSGVO) — Korrektur unrichtiger Daten</li>
+        <li><strong>Recht auf Löschung</strong> (Art. 17 DSGVO) — Löschung Ihrer Daten</li>
+        <li><strong>Recht auf Einschränkung</strong> (Art. 18 DSGVO) — Einschränkung der Verarbeitung</li>
+        <li><strong>Recht auf Datenübertragbarkeit</strong> (Art. 20 DSGVO) — Übertragung Ihrer Daten</li>
+        <li><strong>Widerspruchsrecht</strong> (Art. 21 DSGVO) — Widerspruch gegen die Verarbeitung</li>
+      </ul>
+      <p>Zur Ausübung Ihrer Rechte wenden Sie sich an: <a href="mailto:adrian@alleyoop-saas.de">adrian@alleyoop-saas.de</a></p>
+
+      <h3>Beschwerderecht</h3>
+      <p>Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren. Die zuständige Aufsichtsbehörde für Bayern ist das Bayerische Landesamt für Datenschutzaufsicht (BayLDA), Promenade 18, 91522 Ansbach.</p>
+    </div>
+  </div>
+
+  <!-- ── DATENSICHERHEIT ── -->
+  <div class="ds-card">
+    <div class="ds-section-label">Datensicherheit</div>
+    <div class="ds-prose">
+      <h3>Technische und organisatorische Maßnahmen</h3>
+      <p>Wir setzen technische und organisatorische Sicherheitsmaßnahmen ein, um Ihre personenbezogenen Daten gegen zufällige oder vorsätzliche Manipulation, Verlust, Zerstörung oder den Zugriff unberechtigter Personen zu schützen.</p>
+      <p>Die Datenübertragung auf unserer Website erfolgt verschlüsselt. Wir verwenden das HTTPS-Protokoll, um die Sicherheit Ihrer Daten bei der Übermittlung zu gewährleisten.</p>
+
+      <h3>Keine Weitergabe an Dritte</h3>
+      <p>Ihre Daten werden nicht ohne Ihre ausdrückliche Zustimmung an Dritte verkauft, vermietet oder weitergegeben. Eine Weitergabe an potenzielle Arbeitgeber erfolgt ausschließlich nach vorheriger Abstimmung mit Ihnen und nur mit Ihrer Zustimmung im Einzelfall.</p>
+    </div>
+  </div>
+
+  <!-- ── COOKIES & TRACKING ── -->
+  <div class="ds-card">
+    <div class="ds-section-label">Cookies & Tracking</div>
+    <div class="ds-prose">
+      <h3>Keine Tracking-Tools</h3>
+      <p>Diese Website verwendet keine Analyse- oder Tracking-Tools (wie Google Analytics, Facebook Pixel o.ä.). Es werden keine Cookies zu Werbezwecken eingesetzt.</p>
+      <p>Technisch notwendige Cookies können für die Grundfunktionalität der Website eingesetzt werden. Diese enthalten keine personenbezogenen Daten und werden nach Schließen des Browsers gelöscht.</p>
+
+      <h3>Externe Links</h3>
+      <p>Unsere Website enthält Links zu externen Seiten (z.B. LinkedIn, Crunchbase). Für den Datenschutz auf diesen Seiten sind die jeweiligen Betreiber verantwortlich. Wir empfehlen, die Datenschutzerklärungen dieser Seiten zu lesen.</p>
+    </div>
+  </div>
+
+  <!-- ── ÄNDERUNGEN ── -->
+  <div class="ds-card">
+    <div class="ds-section-label">Änderungen dieser Datenschutzerklärung</div>
+    <div class="ds-prose">
+      <p>Wir behalten uns vor, diese Datenschutzerklärung anzupassen, um sie an geänderte Rechtslagen oder bei Änderungen des Dienstes sowie der Datenverarbeitung anzupassen. Dies gilt jedoch nur im Hinblick auf Erklärungen zur Datenverarbeitung. Sofern Einwilligungen der Nutzer erforderlich sind oder Bestandteile der Datenschutzerklärung Regelungen des Vertragsverhältnisses mit den Nutzern enthalten, erfolgen die Änderungen nur mit Zustimmung der Nutzer.</p>
+      <p>Die aktuelle Version dieser Datenschutzerklärung ist stets auf dieser Seite abrufbar. Stand: Mai 2025.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2025 MVPLY · Adrian Kocur · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="index.html">Zurück zur Hauptseite</a></p>
+</footer>
+
+</body>
+</html>

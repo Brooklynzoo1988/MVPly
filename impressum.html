@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Impressum — MVPLY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Cabinet+Grotesk:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #ffffff;
+  --bg2: #f8f8fc;
+  --bg3: #f0f0f8;
+  --border: rgba(0,0,0,0.08);
+  --border2: rgba(0,0,0,0.15);
+  --text: #0a0a14;
+  --text2: #5a5a7a;
+  --text3: #9898b8;
+  --blue: #0066FF;
+  --blue-light: #e0ecff;
+  --purple: #8A3FFC;
+  --green: #00c96b;
+  --font-display: 'Clash Display', sans-serif;
+  --font-body: 'Cabinet Grotesk', sans-serif;
+  --r-lg: 20px;
+  --r-pill: 999px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg2);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 48px;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-display); font-size: 22px; font-weight: 700;
+  letter-spacing: -0.5px; color: var(--text); text-decoration: none;
+}
+.logo-mark {
+  width: 34px; height: 34px;
+  background: linear-gradient(135deg, var(--blue), var(--purple));
+  border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: #fff; font-weight: 800;
+}
+.nav-badge {
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+  color: var(--blue); border: 1.5px solid var(--blue);
+  padding: 2px 9px; border-radius: var(--r-pill); text-transform: uppercase;
+}
+.nav-back {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 14px; font-weight: 600; color: var(--text2);
+  padding: 8px 20px; border-radius: var(--r-pill);
+  border: 1.5px solid var(--border2); transition: all 0.2s;
+}
+.nav-back:hover { color: var(--blue); border-color: var(--blue); text-decoration: none; }
+
+/* ─── PAGE ─── */
+.page-wrap {
+  max-width: 720px; margin: 0 auto;
+  padding: 100px 40px 80px;
+}
+
+/* ─── HEADER ─── */
+.page-eyebrow {
+  display: inline-flex; align-items: center;
+  background: var(--blue-light); color: var(--blue);
+  border-radius: var(--r-pill); padding: 5px 14px;
+  font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.page-title {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 8vw, 88px);
+  font-weight: 700; letter-spacing: -3px; line-height: 1.0;
+  margin-bottom: 48px; color: var(--text);
+}
+
+/* ─── CARDS ─── */
+.impr-card {
+  background: #fff; border-radius: 20px;
+  border: 1.5px solid var(--border);
+  overflow: hidden; margin-bottom: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+}
+
+.impr-section-label {
+  display: flex; align-items: center; gap: 10px;
+  padding: 24px 32px 0;
+  font-size: 11px; font-weight: 800; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--blue);
+  margin-bottom: 20px;
+}
+.impr-section-label::before {
+  content: ''; width: 18px; height: 2px;
+  background: var(--blue); flex-shrink: 0;
+}
+
+/* ─── NAME BLOCK ─── */
+.impr-name { padding: 0 32px 28px; }
+.impr-name h2 {
+  font-family: var(--font-display); font-size: 30px; font-weight: 700;
+  letter-spacing: -0.5px; margin-bottom: 4px;
+}
+.impr-company {
+  font-size: 15px; font-weight: 700; color: var(--blue); margin-bottom: 16px;
+}
+.impr-address { font-size: 15px; color: var(--text2); line-height: 1.9; }
+
+/* ─── CONTACT ROWS ─── */
+.impr-rows { padding: 0 24px 24px; display: flex; flex-direction: column; gap: 10px; }
+.impr-row {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 12px; padding: 14px 18px; transition: all 0.2s;
+}
+.impr-row:hover { border-color: var(--blue); background: var(--blue-light); }
+.impr-row-icon {
+  width: 38px; height: 38px; border-radius: 10px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 17px;
+}
+.icon-phone { background: rgba(0,102,255,0.1); }
+.icon-mail  { background: rgba(138,63,252,0.1); }
+.icon-tax   { background: rgba(0,201,107,0.1); }
+.impr-row-label {
+  font-size: 10px; font-weight: 800; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text3); margin-bottom: 2px;
+}
+.impr-row-value { font-size: 15px; font-weight: 700; color: var(--text); }
+.impr-row-value a { color: var(--blue); }
+.impr-row-value a:hover { text-decoration: underline; }
+
+/* ─── PROSE ─── */
+.impr-prose { padding: 0 32px 28px; }
+.impr-prose h3 {
+  font-family: var(--font-display); font-size: 17px; font-weight: 700;
+  color: var(--text); margin-bottom: 10px; margin-top: 24px;
+}
+.impr-prose h3:first-child { margin-top: 0; }
+.impr-prose p {
+  font-size: 14px; color: var(--text2); line-height: 1.8; margin-bottom: 12px;
+}
+.impr-prose p:last-child { margin-bottom: 0; }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--text); color: rgba(255,255,255,0.5);
+  padding: 32px 0; text-align: center; font-size: 13px; margin-top: 60px;
+}
+footer a { color: rgba(255,255,255,0.4); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 600px) {
+  nav { padding: 12px 20px; }
+  .page-wrap { padding: 88px 16px 60px; }
+  .impr-section-label { padding: 20px 20px 0; }
+  .impr-name { padding: 0 20px 20px; }
+  .impr-rows { padding: 0 16px 20px; }
+  .impr-prose { padding: 0 20px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="logo-mark">M</div>
+    MVPLY
+    <span class="nav-badge">Beta</span>
+  </a>
+  <a href="index.html" class="nav-back">← Zurück</a>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="page-eyebrow">Rechtliches</div>
+  <h1 class="page-title">Impressum</h1>
+
+  <!-- ── ANGABEN GEMÄSS § 5 TMG ── -->
+  <div class="impr-card">
+    <div class="impr-section-label">Angaben gemäß § 5 TMG</div>
+    <div class="impr-name">
+      <h2>Adrian Kocur</h2>
+      <div class="impr-company">MVPLY</div>
+      <div class="impr-address">
+        Wallensteinstr. 29<br>
+        80807 München<br>
+        Deutschland
+      </div>
+    </div>
+  </div>
+
+  <!-- ── KONTAKT ── -->
+  <div class="impr-card">
+    <div class="impr-section-label">Kontakt</div>
+    <div class="impr-rows">
+      <div class="impr-row">
+        <div class="impr-row-icon icon-phone">📞</div>
+        <div>
+          <div class="impr-row-label">Telefon</div>
+          <div class="impr-row-value"><a href="tel:+491714792955">0171 / 4792955</a></div>
+        </div>
+      </div>
+      <div class="impr-row">
+        <div class="impr-row-icon icon-mail">✉️</div>
+        <div>
+          <div class="impr-row-label">E-Mail</div>
+          <div class="impr-row-value"><a href="mailto:adrian@alleyoop-saas.de">adrian@alleyoop-saas.de</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEUERLICHE ANGABEN ── -->
+  <div class="impr-card">
+    <div class="impr-section-label">Steuerliche Angaben</div>
+    <div class="impr-rows">
+      <div class="impr-row">
+        <div class="impr-row-icon icon-tax">🧾</div>
+        <div>
+          <div class="impr-row-label">Steuernummer</div>
+          <div class="impr-row-value">145/135/22011</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── HAFTUNG FÜR INHALTE ── -->
+  <div class="impr-card">
+    <div class="impr-section-label">Haftung für Inhalte</div>
+    <div class="impr-prose">
+      <h3>Haftung für Inhalte</h3>
+      <p>Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
+      <p>Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.</p>
+
+      <h3>Haftung für Links</h3>
+      <p>Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
+      <p>Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.</p>
+
+      <h3>Urheberrecht</h3>
+      <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet.</p>
+      <p>Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.</p>
+    </div>
+  </div>
+
+  <!-- ── DATENSCHUTZ ── -->
+  <div class="impr-card">
+    <div class="impr-section-label">Datenschutz</div>
+    <div class="impr-prose">
+      <h3>Datenschutzhinweis</h3>
+      <p>Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten möglich. Soweit auf unseren Seiten personenbezogene Daten (beispielsweise Name, Anschrift oder E-Mail-Adressen) erhoben werden, erfolgt dies, soweit möglich, stets auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben.</p>
+      <p>Wir weisen darauf hin, dass die Datenübertragung im Internet (z.B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.</p>
+
+      <h3>Widerspruch gegen Werbe-Mails</h3>
+      <p>Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten zur Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit widersprochen. Die Betreiber der Seiten behalten sich ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-E-Mails, vor.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2025 MVPLY · Adrian Kocur · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="index.html">Zurück zur Hauptseite</a></p>
+</footer>
+
+</body>
+</html>

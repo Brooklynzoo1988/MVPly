@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MVPLY — Elite SaaS Sales Vault</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Cabinet+Grotesk:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #ffffff;
+  --bg2: #f8f8fc;
+  --bg3: #f0f0f8;
+  --border: rgba(0,0,0,0.08);
+  --border2: rgba(0,0,0,0.15);
+  --text: #0a0a14;
+  --text2: #5a5a7a;
+  --text3: #9898b8;
+  --blue: #0066FF;
+  --blue-light: #e0ecff;
+  --blue-mid: #3385ff;
+  --purple: #8A3FFC;
+  --purple-mid: #a262fd;
+  --gold: #f59e0b;
+  --common: #64748b;
+  --green: #00c96b;
+  --font-display: 'Clash Display', sans-serif;
+  --font-body: 'Cabinet Grotesk', sans-serif;
+  --r: 12px;
+  --r-lg: 20px;
+  --r-pill: 999px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 48px;
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-display); font-size: 22px; font-weight: 700;
+  letter-spacing: -0.5px;
+}
+.logo-mark {
+  width: 34px; height: 34px;
+  background: linear-gradient(135deg, var(--blue) 0%, var(--purple) 100%);
+  border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: #fff; font-weight: 800;
+}
+.nav-badge {
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+  color: var(--blue); border: 1.5px solid var(--blue);
+  padding: 2px 9px; border-radius: var(--r-pill);
+  text-transform: uppercase;
+}
+.nav-taglines { display: flex; gap: 6px; margin-left: 8px; }
+.nav-tagline-pill {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.3px;
+  padding: 3px 10px; border-radius: var(--r-pill); white-space: nowrap;
+  background: rgba(0,102,255,0.08); color: var(--blue);
+  border: 1px solid rgba(0,102,255,0.2);
+}
+@media (max-width: 1100px) { .nav-taglines { display: none; } }
+.nav-right { display: flex; align-items: center; gap: 20px; }
+.lang-switch {
+  display: flex;
+  border: 1.5px solid var(--border2); border-radius: var(--r-pill); overflow: hidden;
+}
+.lang-btn {
+  padding: 5px 14px; font-size: 12px; font-weight: 700;
+  letter-spacing: 0.5px; border: none; background: transparent;
+  color: var(--text2); transition: all 0.2s; cursor: pointer;
+}
+.lang-btn.active { background: var(--blue); color: #fff; }
+.nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+.nav-links a { font-size: 14px; font-weight: 500; color: var(--text2); transition: color 0.2s; }
+.nav-links a:hover { color: var(--text); }
+.btn-primary {
+  background: var(--blue); color: #fff; border: none;
+  padding: 10px 24px; border-radius: var(--r-pill);
+  font-size: 14px; font-weight: 700; cursor: pointer;
+  transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-body);
+}
+.btn-primary:hover { background: var(--blue-mid); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,102,255,0.3); }
+.btn-ghost {
+  background: transparent; border: 1.5px solid var(--border2);
+  color: var(--text); padding: 10px 24px; border-radius: var(--r-pill);
+  font-size: 14px; font-weight: 600; cursor: pointer;
+  transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-body);
+}
+.btn-ghost:hover { border-color: var(--blue); color: var(--blue); }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center;
+  padding: 100px 40px 80px;
+  position: relative; overflow: hidden;
+  background: #fff;
+}
+.hero-bg { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.hero-bubble {
+  position: absolute; border-radius: 50%; opacity: 0.12;
+  animation: floatBubble var(--dur, 8s) ease-in-out var(--delay, 0s) infinite;
+}
+.hero-bubble.b1 { width:600px; height:600px; background:var(--blue); top:-200px; right:-100px; --dur:10s; }
+.hero-bubble.b2 { width:400px; height:400px; background:var(--purple); bottom:-100px; left:-80px; --dur:13s; --delay:2s; }
+.hero-bubble.b3 { width:250px; height:250px; background:var(--blue); top:30%; left:10%; --dur:9s; --delay:1s; opacity:0.06; }
+@keyframes floatBubble {
+  0%,100%{transform:translate(0,0) scale(1)}
+  33%{transform:translate(15px,-20px) scale(1.03)}
+  66%{transform:translate(-10px,10px) scale(0.97)}
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 7.5vw, 92px);
+  font-weight: 700; line-height: 1.0; letter-spacing: -2.5px;
+  margin-bottom: 24px;
+  animation: fadeUp 0.7s ease 0.1s both;
+  position: relative; z-index: 1;
+}
+.hero-title .highlight {
+  background: linear-gradient(135deg, var(--blue) 0%, var(--purple) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-sub {
+  font-size: clamp(18px, 2vw, 22px); font-weight: 400;
+  color: var(--text2); max-width: 580px;
+  margin: 0 auto 40px;
+  animation: fadeUp 0.7s ease 0.2s both;
+}
+.hero-sub strong { color: var(--text); font-weight: 700; display: block; margin-bottom: 4px; }
+.hero-ctas {
+  display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+  animation: fadeUp 0.7s ease 0.3s both;
+  margin-bottom: 56px;
+}
+.hero-ote-block {
+  margin-top: 0;
+  text-align: center;
+  animation: fadeUp 0.7s ease 0.4s both;
+  position: relative; z-index: 1;
+}
+.hero-ote-label {
+  font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--text3); margin-bottom: 8px;
+}
+.hero-ote-num {
+  font-family: var(--font-display);
+  font-size: clamp(64px, 10vw, 112px);
+  font-weight: 700; line-height: 1; letter-spacing: -3px;
+  background: linear-gradient(135deg, var(--blue) 0%, var(--purple) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  margin-bottom: 12px;
+}
+.hero-quota-inline {
+  display: inline-flex; align-items: baseline; gap: 8px;
+  margin-top: 12px; margin-bottom: 4px;
+}
+.hero-quota-num {
+  font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--text2);
+}
+.hero-quota-label { font-size: 13px; font-weight: 600; color: var(--text3); }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+/* ─── STATS BAR ─── */
+.stats-bar { background: var(--text); padding: 56px 0; }
+.stats-row { display: flex; gap: 80px; flex-wrap: wrap; justify-content: center; }
+.stat-item { text-align: center; }
+.stat-num {
+  font-family: var(--font-display); font-size: 44px; font-weight: 700;
+  background: linear-gradient(135deg, var(--blue-mid), var(--purple-mid));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  line-height: 1;
+}
+.stat-label { font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 6px; font-weight: 500; }
+
+/* ─── SECTION COMMON ─── */
+section { padding: 100px 0; }
+.container { max-width: 1160px; margin: 0 auto; padding: 0 40px; }
+.section-eyebrow {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--blue-light); color: var(--blue);
+  border-radius: var(--r-pill); padding: 5px 14px;
+  font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-family: var(--font-display); font-size: clamp(36px, 4vw, 52px);
+  font-weight: 700; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 16px;
+}
+.section-sub { font-size: 18px; color: var(--text2); max-width: 540px; }
+
+/* ─── VAULT CARDS ─── */
+#vault { background: var(--bg2); scroll-margin-top: 72px; }
+#roles { scroll-margin-top: 72px; }
+#signal { scroll-margin-top: 72px; }
+#how { scroll-margin-top: 72px; }
+#testimonials { scroll-margin-top: 72px; }
+.vault-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; flex-wrap: wrap; gap: 24px; }
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 24px; }
+.card {
+  border-radius: 20px; border: 1.5px solid var(--border);
+  background: #fff; overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  transform-style: preserve-3d; cursor: pointer;
+}
+.card:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 20px 60px rgba(0,0,0,0.12); }
+.card.legendary { border-color: rgba(245,158,11,0.4); }
+.card.epic { border-color: rgba(138,63,252,0.4); }
+.card.rare { border-color: rgba(0,102,255,0.4); }
+.card-rarity-bar { height: 4px; }
+.card.legendary .card-rarity-bar { background: linear-gradient(90deg, var(--gold), #fbbf24, var(--gold)); }
+.card.epic .card-rarity-bar { background: linear-gradient(90deg, var(--purple), #c084fc, var(--purple)); }
+.card.rare .card-rarity-bar { background: linear-gradient(90deg, var(--blue), #60a5fa, var(--blue)); }
+.card.common .card-rarity-bar { background: var(--common); }
+.card-header { display: flex; justify-content: space-between; align-items: flex-start; padding: 16px 18px 12px; gap: 8px; }
+.card-role { font-family: var(--font-display); font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text3); }
+.card-target { font-family: var(--font-display); font-size: 15px; font-weight: 700; color: var(--text); }
+.card-rarity-badge {
+  font-size: 10px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase;
+  padding: 3px 9px; border-radius: var(--r-pill); white-space: nowrap; flex-shrink: 0;
+}
+.card.legendary .card-rarity-badge { background: rgba(245,158,11,0.15); color: var(--gold); }
+.card.epic .card-rarity-badge { background: rgba(138,63,252,0.15); color: var(--purple); }
+.card.rare .card-rarity-badge { background: rgba(0,102,255,0.12); color: var(--blue); }
+.card.common .card-rarity-badge { background: rgba(100,116,139,0.12); color: var(--common); }
+.card-art {
+  position: relative; height: 160px; margin: 0 18px;
+  border-radius: 12px; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.card.legendary .card-art { background: linear-gradient(135deg, rgba(245,158,11,0.08), rgba(251,191,36,0.04)); border: 1px solid rgba(245,158,11,0.15); }
+.card.epic .card-art { background: linear-gradient(135deg, rgba(138,63,252,0.08), rgba(192,132,252,0.04)); border: 1px solid rgba(138,63,252,0.15); }
+.card.rare .card-art { background: linear-gradient(135deg, rgba(0,102,255,0.06), rgba(96,165,250,0.03)); border: 1px solid rgba(0,102,255,0.12); }
+.card.common .card-art { background: rgba(100,116,139,0.05); border: 1px solid rgba(100,116,139,0.1); }
+.card-art-inner { position: relative; z-index: 1; text-align: center; }
+.card-main-stat-big { font-family: var(--font-display); font-size: 44px; font-weight: 700; line-height: 1; }
+.card.legendary .card-main-stat-big { color: var(--gold); }
+.card.epic .card-main-stat-big { color: var(--purple); }
+.card.rare .card-main-stat-big { color: var(--blue); }
+.card.common .card-main-stat-big { color: var(--common); }
+.card-art-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text3); margin-top: 4px; }
+.card-seal {
+  position: absolute; bottom: 10px; right: 10px;
+  background: rgba(0,201,107,0.12); border: 1px solid rgba(0,201,107,0.3);
+  border-radius: 8px; padding: 4px 8px; text-align: center;
+}
+.card-seal-icon { font-size: 14px; }
+.card-seal-text { font-size: 8px; font-weight: 800; letter-spacing: 1px; color: var(--green); text-transform: uppercase; line-height: 1.2; }
+.card-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 12px 18px; border-top: 1px solid var(--border); margin-top: 14px; }
+.card-stat-row { display: flex; align-items: center; gap: 8px; padding: 6px 0; }
+.card-stat-icon { font-size: 14px; }
+.card-stat-key { font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: var(--text3); }
+.card-stat-val { font-size: 12px; font-weight: 700; color: var(--text); }
+.card-footer { display: flex; justify-content: space-between; align-items: center; padding: 10px 18px 14px; }
+.card-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+.card-tag {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.5px;
+  padding: 3px 8px; border-radius: var(--r-pill);
+  background: var(--bg3); color: var(--text2); border: 1px solid var(--border);
+}
+.card-power { text-align: center; }
+.card-power-val { font-family: var(--font-display); font-size: 22px; font-weight: 700; line-height: 1; }
+.card.legendary .card-power-val { color: var(--gold); }
+.card.epic .card-power-val { color: var(--purple); }
+.card.rare .card-power-val { color: var(--blue); }
+.card.common .card-power-val { color: var(--common); }
+.card-power-label { font-size: 9px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text3); }
+
+/* ─── ROLES ─── */
+#roles { background: #fff; }
+.roles-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 48px; }
+.role-card {
+  padding: 28px 20px; border-radius: var(--r-lg);
+  border: 1.5px solid var(--border); background: var(--bg2);
+  text-align: center; transition: all 0.25s;
+}
+.role-card:hover { border-color: var(--blue); background: var(--blue-light); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,102,255,0.1); }
+.role-icon { font-size: 28px; margin-bottom: 12px; }
+.role-name { font-family: var(--font-display); font-size: 15px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 6px; }
+.role-desc { font-size: 12px; color: var(--text3); font-weight: 500; }
+.roles-claim-bar {
+  display: flex; align-items: center; gap: 16px;
+  margin-top: 28px;
+  background: linear-gradient(135deg, rgba(0,102,255,0.06), rgba(138,63,252,0.06));
+  border: 1.5px solid rgba(0,102,255,0.15);
+  border-radius: var(--r-lg); padding: 18px 28px;
+}
+.claim-badge {
+  font-family: var(--font-display); font-size: 15px; font-weight: 700;
+  color: #fff; background: linear-gradient(135deg, var(--blue), var(--purple));
+  border-radius: var(--r-pill); padding: 4px 12px; white-space: nowrap;
+}
+.roles-claim-text { font-size: 15px; font-weight: 500; color: var(--text2); line-height: 1.5; }
+
+/* ─── SIGNAL SNIPER ─── */
+#signal { background: var(--text); color: #fff; overflow: hidden; position: relative; }
+#signal .section-eyebrow { background: rgba(0,102,255,0.2); color: #60a5fa; }
+#signal .section-title { color: #fff; }
+#signal .section-sub { color: rgba(255,255,255,0.6); }
+.signal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-top: 60px; }
+.signal-steps { display: flex; flex-direction: column; gap: 0; }
+.signal-step { display: flex; gap: 20px; padding: 24px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.signal-step:last-child { border-bottom: none; }
+.step-number {
+  width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0;
+  background: rgba(0,102,255,0.2); border: 1px solid rgba(0,102,255,0.4);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 14px; font-weight: 800; color: var(--blue-mid);
+}
+.step-title { font-family: var(--font-display); font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.step-desc { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+.signal-visual {
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 24px; padding: 40px 32px;
+  display: flex; align-items: center; justify-content: center;
+}
+.signal-anim-wrap { width: 100%; }
+
+/* ─── HOW IT WORKS ─── */
+#how { background: var(--bg2); }
+.how-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 56px; }
+.how-step { text-align: center; padding: 40px 28px; background: #fff; border-radius: 20px; border: 1.5px solid var(--border); position: relative; }
+.how-step::after { content: '→'; position: absolute; right: -20px; top: 50%; transform: translateY(-50%); font-size: 20px; color: var(--text3); }
+.how-step:last-child::after { display: none; }
+.how-num {
+  width: 52px; height: 52px; border-radius: 50%; margin: 0 auto 20px;
+  background: linear-gradient(135deg, var(--blue), var(--purple));
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 20px; font-weight: 800; color: #fff;
+}
+.how-title { font-family: var(--font-display); font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+.how-desc { font-size: 14px; color: var(--text2); line-height: 1.7; }
+
+/* ─── TESTIMONIALS ─── */
+#testimonials { background: var(--bg2); }
+.testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 52px; }
+.testimonial-card {
+  background: #fff; border-radius: 20px; border: 1.5px solid var(--border);
+  padding: 32px 28px; display: flex; flex-direction: column; gap: 20px;
+  transition: all 0.25s;
+}
+.testimonial-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); }
+.testimonial-stars { display: flex; gap: 3px; }
+.star { color: var(--gold); font-size: 16px; }
+.testimonial-quote { font-size: 16px; line-height: 1.7; color: var(--text); font-style: italic; font-weight: 400; flex: 1; }
+.testimonial-author { display: flex; align-items: center; gap: 14px; }
+.author-avatar {
+  width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 15px; font-weight: 800; color: #fff;
+}
+.author-avatar.av1 { background: linear-gradient(135deg, var(--blue), var(--purple)); }
+.author-avatar.av2 { background: linear-gradient(135deg, var(--purple), #e040fb); }
+.author-avatar.av3 { background: linear-gradient(135deg, #0099cc, var(--blue)); }
+.author-name { font-size: 14px; font-weight: 800; color: var(--text); line-height: 1.3; }
+.author-meta { font-size: 12px; color: var(--text3); font-weight: 500; }
+.author-niche { display: inline-block; margin-top: 4px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; padding: 2px 8px; border-radius: var(--r-pill); background: var(--blue-light); color: var(--blue); }
+
+/* ─── CTA ─── */
+#cta { background: linear-gradient(135deg, var(--blue) 0%, var(--purple) 100%); color: #fff; text-align: center; }
+#cta .section-title { color: #fff; }
+#cta .section-sub { color: rgba(255,255,255,0.75); max-width: 500px; margin: 0 auto 40px; }
+#cta .section-eyebrow { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.9); }
+.btn-white {
+  background: #fff; color: var(--blue); border: none; padding: 14px 32px;
+  border-radius: var(--r-pill); font-size: 15px; font-weight: 800;
+  display: inline-flex; align-items: center; gap: 10px;
+  transition: all 0.2s; cursor: pointer; font-family: var(--font-body);
+}
+.btn-white:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,0.2); }
+
+/* ─── FOOTER ─── */
+footer { background: var(--text); color: rgba(255,255,255,0.5); padding: 40px 0; text-align: center; font-size: 13px; }
+
+/* ─── REVEAL ─── */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  nav { padding: 12px 20px; }
+  .nav-links { display: none; }
+  .hero { padding: 80px 20px 60px; }
+  section { padding: 70px 0; }
+  .container { padding: 0 20px; }
+  .how-steps { grid-template-columns: 1fr; }
+  .how-step::after { content: '↓'; right: 50%; top: auto; bottom: -22px; transform: translateX(50%); }
+  .signal-grid { grid-template-columns: 1fr; }
+  .stats-row { gap: 40px; }
+  .roles-grid { grid-template-columns: repeat(2, 1fr); }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .cards-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="logo-mark">M</div>
+    MVPLY
+    <span class="nav-badge">Beta</span>
+    <div class="nav-taglines">
+      <span class="nav-tagline-pill">⚡ Matching System · Coming Soon</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#vault" onclick="scrollToSection('vault');return false;" data-i18n="nav.vault">The Vault</a></li>
+    <li><a href="#signal" onclick="scrollToSection('signal');return false;" data-i18n="nav.signal">Signal Sniper</a></li>
+    <li><a href="#how" onclick="scrollToSection('how');return false;" data-i18n="nav.how">Wie's läuft</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-switch">
+      <button class="lang-btn active" onclick="setLang('de')">DE</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+    <a href="join.html?lang=de" class="btn-primary" data-i18n="nav.cta">Track Record einreichen →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="hero-bubble b1"></div>
+    <div class="hero-bubble b2"></div>
+    <div class="hero-bubble b3"></div>
+  </div>
+  <h1 class="hero-title">
+    <span data-i18n="hero.title1">Die Elite</span><br>
+    <span class="highlight" data-i18n="hero.title2">SaaS Sales Vault.</span>
+  </h1>
+  <p class="hero-sub">
+    <strong data-i18n="hero.sub1">Hör auf dich zu bewerben.</strong>
+    <span data-i18n="hero.sub2">Dein verifizierter Track Record spricht für dich.</span>
+  </p>
+  <div class="hero-ctas">
+    <a href="join.html?lang=de" class="btn-primary" data-i18n="hero.cta1">Track Record einreichen →</a>
+    <a href="#vault" onclick="scrollToSection('vault');return false;" class="btn-ghost" data-i18n="hero.cta2">🏆 Den Vault erkunden</a>
+  </div>
+  <div class="hero-ote-block">
+    <div class="hero-ote-label" data-i18n="hero.ote.label">Im Vault: Talente mit ø verantwortetem ARR</div>
+    <div class="hero-ote-num">€2.1M</div>
+    <div class="hero-quota-inline">
+      <span class="hero-quota-num">118%</span>
+      <span class="hero-quota-label" data-i18n="hero.quota.label">Ø Quota Attainment</span>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-row">
+    <div class="stat-item reveal">
+      <div class="stat-num">4.2d</div>
+      <div class="stat-label" data-i18n="stats.intro">Ø Tage bis zum ersten Intro</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-1">
+      <div class="stat-num">97%</div>
+      <div class="stat-label" data-i18n="stats.retention">Retention Rate</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-2">
+      <div class="stat-num">98%</div>
+      <div class="stat-label" data-i18n="stats.satisfaction">Hiring Satisfaction</div>
+    </div>
+  </div>
+</div>
+
+<!-- THE VAULT -->
+<section id="vault">
+  <div class="container">
+    <div class="vault-header">
+      <div>
+        <div class="section-eyebrow">⚡ <span data-i18n="vault.eyebrow">The Vault</span></div>
+        <h2 class="section-title" data-i18n="vault.title">Elite Sales Player.</h2>
+        <p class="section-sub" data-i18n="vault.sub">Jede Karte = ein verifizierter Track Record. Kein Bullshit. Nur Zahlen.</p>
+      </div>
+      <a href="join.html?lang=de" class="btn-primary" data-i18n="vault.cta">Eigene Karte einreichen →</a>
+    </div>
+    <div class="cards-grid" id="cards-grid"></div>
+  </div>
+</section>
+
+<!-- ROLES -->
+<section id="roles">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:0;">
+      <div class="section-eyebrow">🎯 <span data-i18n="roles.eyebrow">Alle Rollen</span></div>
+      <h2 class="section-title reveal" data-i18n="roles.title">Wer ist im Vault?</h2>
+      <p class="section-sub reveal" style="margin: 0 auto" data-i18n="roles.sub">Vom SDR bis zum Sales Director — wir matchen alle Elite-Rollen im SaaS Sales.</p>
+    </div>
+    <div class="roles-grid" id="roles-grid"></div>
+    <div class="roles-claim-bar reveal">
+      <span class="claim-badge">+16% OTE</span>
+      <span class="roles-claim-text" data-i18n="roles.claim">Im Schnitt erzielen unsere Kandidaten 16% mehr OTE als ihre ursprüngliche Erwartung — fair nach Marktwert.</span>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNAL SNIPER -->
+<section id="signal">
+  <div class="container">
+    <div class="section-eyebrow">🎯 <span data-i18n="signal.eyebrow">Market Signal Sniper</span></div>
+    <h2 class="section-title" data-i18n="signal.title">Wir snipen für dich.</h2>
+    <p class="section-sub" data-i18n="signal.sub">Funding-Runden, Exits, Expansionen — wir lesen die Signale bevor andere wach sind.</p>
+    <div class="signal-grid">
+      <div class="signal-steps" id="signal-steps"></div>
+      <div class="signal-visual reveal">
+        <div class="signal-anim-wrap">
+          <svg viewBox="0 0 420 520" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:420px;display:block;margin:0 auto">
+            <defs>
+              <linearGradient id="gBlue" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#0066FF"/>
+                <stop offset="100%" style="stop-color:#8A3FFC"/>
+              </linearGradient>
+              <linearGradient id="gGreen" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#00c96b"/>
+                <stop offset="100%" style="stop-color:#00a855"/>
+              </linearGradient>
+            </defs>
+
+            <!-- ── PULSE RINGS on source nodes ── -->
+            <!-- Crunchbase pulse -->
+            <circle cx="64" cy="39" r="30" fill="none" stroke="rgba(245,130,32,0.6)" stroke-width="1.2">
+              <animate attributeName="r" values="30;48;30" dur="2.2s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.6;0;0.6" dur="2.2s" repeatCount="indefinite"/>
+            </circle>
+            <!-- PitchBook pulse -->
+            <circle cx="210" cy="39" r="30" fill="none" stroke="rgba(0,102,255,0.6)" stroke-width="1.2">
+              <animate attributeName="r" values="30;48;30" dur="2.2s" repeatCount="indefinite" begin="0.7s"/>
+              <animate attributeName="opacity" values="0.6;0;0.6" dur="2.2s" repeatCount="indefinite" begin="0.7s"/>
+            </circle>
+            <!-- Dealroom pulse -->
+            <circle cx="356" cy="39" r="30" fill="none" stroke="rgba(138,63,252,0.6)" stroke-width="1.2">
+              <animate attributeName="r" values="30;48;30" dur="2.2s" repeatCount="indefinite" begin="1.4s"/>
+              <animate attributeName="opacity" values="0.6;0;0.6" dur="2.2s" repeatCount="indefinite" begin="1.4s"/>
+            </circle>
+
+            <!-- ── SOURCE NODES ── -->
+            <rect x="10" y="20" width="108" height="38" rx="19" fill="rgba(245,130,32,0.12)" stroke="rgba(245,130,32,0.5)" stroke-width="1.5"/>
+            <text x="64" y="44" text-anchor="middle" font-family="Cabinet Grotesk,sans-serif" font-size="12" font-weight="800" fill="#f58220">Crunchbase</text>
+
+            <rect x="156" y="20" width="108" height="38" rx="19" fill="rgba(0,102,255,0.12)" stroke="rgba(0,102,255,0.5)" stroke-width="1.5"/>
+            <text x="210" y="44" text-anchor="middle" font-family="Cabinet Grotesk,sans-serif" font-size="12" font-weight="800" fill="#60a5fa">PitchBook</text>
+
+            <rect x="302" y="20" width="108" height="38" rx="19" fill="rgba(138,63,252,0.12)" stroke="rgba(138,63,252,0.5)" stroke-width="1.5"/>
+            <text x="356" y="44" text-anchor="middle" font-family="Cabinet Grotesk,sans-serif" font-size="12" font-weight="800" fill="#c084fc">Dealroom</text>
+
+            <!-- Converging dashed lines to inbox -->
+            <line x1="64" y1="58" x2="210" y2="128" stroke="rgba(245,130,32,0.35)" stroke-width="1.5" stroke-dasharray="5 4">
+              <animate attributeName="stroke-dashoffset" values="100;0" dur="1.8s" repeatCount="indefinite"/>
+            </line>
+            <line x1="210" y1="58" x2="210" y2="128" stroke="rgba(0,102,255,0.4)" stroke-width="1.5" stroke-dasharray="5 4">
+              <animate attributeName="stroke-dashoffset" values="80;0" dur="1.8s" repeatCount="indefinite"/>
+            </line>
+            <line x1="356" y1="58" x2="210" y2="128" stroke="rgba(138,63,252,0.35)" stroke-width="1.5" stroke-dasharray="5 4">
+              <animate attributeName="stroke-dashoffset" values="100;0" dur="1.8s" repeatCount="indefinite"/>
+            </line>
+
+            <!-- ── EMAIL INBOX BOX ── -->
+            <rect x="90" y="128" width="240" height="80" rx="14" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.14)" stroke-width="1.5"/>
+            <!-- Envelope icon -->
+            <rect x="108" y="148" width="36" height="26" rx="4" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+            <polyline points="108,148 126,163 144,148" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linejoin="round"/>
+            <!-- Email lines (text preview) -->
+            <rect x="154" y="149" width="80" height="6" rx="3" fill="rgba(255,255,255,0.3)"/>
+            <rect x="154" y="160" width="56" height="5" rx="2.5" fill="rgba(255,255,255,0.15)"/>
+            <!-- New mail dot -->
+            <circle cx="320" cy="148" r="7" fill="#0066FF">
+              <animate attributeName="opacity" values="1;0.3;1" dur="1.4s" repeatCount="indefinite"/>
+            </circle>
+            <text x="320" y="152" text-anchor="middle" font-family="Cabinet Grotesk,sans-serif" font-size="8" font-weight="800" fill="#fff">1</text>
+            <!-- Second mail row -->
+            <line x1="108" y1="182" x2="318" y2="182" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+            <rect x="108" y="188" width="24" height="16" rx="3" fill="rgba(255,255,255,0.08)"/>
+            <rect x="140" y="190" width="60" height="4" rx="2" fill="rgba(255,255,255,0.12)"/>
+            <rect x="140" y="197" width="40" height="3" rx="1.5" fill="rgba(255,255,255,0.07)"/>
+            <text x="210" y="222" text-anchor="middle" font-family="Cabinet Grotesk,sans-serif" font-size="10" font-weight="700" fill="rgba(255,255,255,0.35)" letter-spacing="1">RSS · TÄGLICH</text>
+
+            <!-- Connector line inbox → matching -->
+            <line x1="210" y1="208" x2="210" y2="248" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" stroke-dasharray="4 4">
+              <animate attributeName="stroke-dashoffset" values="50;0" dur="1.6s" repeatCount="indefinite" begin="0.5s"/>
+            </line>
+
+            <!-- ── MATCHING SYSTEM BOX ── -->
+            <rect x="80" y="248" width="260" height="76" rx="14" fill="rgba(0,102,255,0.08)" stroke="rgba(0,102,255,0.3)" stroke-width="1.5"/>
+            <!-- Scanning bar animation -->
+            <rect x="84" y="252" width="0" height="68" rx="12" fill="url(#gBlue)" opacity="0.07">
+              <animate attributeName="width" values="0;252;0" dur="2.8s" repeatCount="indefinite" begin="0.6s"/>
+            </rect>
+            <text x="210" y="273" text-anchor="middle" font-family="Cabinet Grotesk,sans-serif" font-size="12" font-weight="800" fill="#60a5fa">Matching System</text>
+            <!-- Progress dots -->
+            <circle cx="166" cy="288" r="4.5" fill="#0066FF">
+              <animate attributeName="opacity" values="0.3;1;0.3" dur="1.2s" repeatCount="indefinite" begin="0s"/>
+            </circle>
+            <circle cx="182" cy="288" r="4.5" fill="#4d88ff">
+              <animate attributeName="opacity" values="0.3;1;0.3" dur="1.2s" repeatCount="indefinite" begin="0.3s"/>
+            </circle>
+            <circle cx="198" cy="288" r="4.5" fill="#7766ff">
+              <animate attributeName="opacity" values="0.3;1;0.3" dur="1.2s" repeatCount="indefinite" begin="0.6s"/>
+            </circle>
+            <circle cx="214" cy="288" r="4.5" fill="#8A3FFC">
+              <animate attributeName="opacity" values="0.3;1;0.3" dur="1.2s" repeatCount="indefinite" begin="0.9s"/>
+            </circle>
+            <text x="210" y="308" text-anchor="middle" font-family="Cabinet Grotesk,sans-serif" font-size="10" fill="rgba(255,255,255,0.35)">in progress…</text>
+
+            <!-- Connector line matching → calendar -->
+            <line x1="210" y1="324" x2="210" y2="364" stroke="rgba(0,201,107,0.3)" stroke-width="1.5" stroke-dasharray="4 4">
+              <animate attributeName="stroke-dashoffset" values="50;0" dur="1.4s" repeatCount="indefinite" begin="1s"/>
+            </line>
+
+            <!-- ── CALENDAR BOX ── -->
+            <rect x="80" y="364" width="260" height="108" rx="14" fill="rgba(0,201,107,0.08)" stroke="rgba(0,201,107,0.35)" stroke-width="1.5">
+              <animate attributeName="stroke-opacity" values="0.35;0.8;0.35" dur="2s" repeatCount="indefinite" begin="1.4s"/>
+            </rect>
+            <!-- Calendar header -->
+            <rect x="80" y="364" width="260" height="28" rx="14" fill="rgba(0,201,107,0.15)"/>
+            <rect x="80" y="378" width="260" height="14" fill="rgba(0,201,107,0.15)"/>
+            <!-- Calendar icon dots -->
+            <circle cx="102" cy="372" r="5" fill="rgba(0,201,107,0.5)" stroke="rgba(0,201,107,0.8)" stroke-width="1"/>
+            <circle cx="318" cy="372" r="5" fill="rgba(0,201,107,0.5)" stroke="rgba(0,201,107,0.8)" stroke-width="1"/>
+            <text x="210" y="376" text-anchor="middle" font-family="Cabinet Grotesk,sans-serif" font-size="10" font-weight="800" fill="rgba(0,201,107,0.9)" letter-spacing="1">KALENDER</text>
+            <!-- Calendar entry -->
+            <rect x="96" y="400" width="228" height="36" rx="8" fill="rgba(0,201,107,0.12)" stroke="rgba(0,201,107,0.25)" stroke-width="1"/>
+            <rect x="96" y="400" width="5" height="36" rx="2" fill="#00c96b"/>
+            <text x="112" y="415" font-family="Cabinet Grotesk,sans-serif" font-size="11" font-weight="800" fill="rgba(255,255,255,0.85)">📞 Intro Call</text>
+            <text x="112" y="429" font-family="Cabinet Grotesk,sans-serif" font-size="10" fill="rgba(255,255,255,0.4)">Kandidat X · Unternehmen Y</text>
+            <!-- Day chips -->
+            <text x="96" y="454" font-family="Cabinet Grotesk,sans-serif" font-size="10" font-weight="700" fill="rgba(0,201,107,0.7)">🏆 4 Tage vor der Stellenanzeige</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="section-eyebrow">⚙️ <span data-i18n="how.eyebrow">So funktioniert's</span></div>
+      <h2 class="section-title reveal" data-i18n="how.title">Von Track Record zu Match.</h2>
+      <p class="section-sub reveal" style="margin: 0 auto" data-i18n="how.sub">Drei Schritte. Kein Bewerbungstheater. Kein Ghosting.</p>
+    </div>
+    <div class="how-steps" id="how-steps"></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="section-eyebrow">💬 <span data-i18n="testimonials.eyebrow">Was unsere Players sagen</span></div>
+      <h2 class="section-title reveal" data-i18n="testimonials.title">Echte Matches. Echte Ergebnisse.</h2>
+      <p class="section-sub reveal" style="margin: 0 auto" data-i18n="testimonials.sub">Keine Recruiter-Floskeln. Nur Feedback von Menschen, die gematcht wurden.</p>
+    </div>
+    <div class="testimonials-grid" id="testimonials-grid"></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="container" style="text-align:center;">
+    <div class="section-eyebrow">🏆 <span data-i18n="cta.eyebrow">Ready to Play?</span></div>
+    <h2 class="section-title reveal" data-i18n="cta.title">Bereit für den Vault?</h2>
+    <p class="section-sub reveal" data-i18n="cta.sub">Reiche deinen Track Record ein. Wir prüfen, verifizieren und matchen dich mit den richtigen Companies.</p>
+    <a href="join.html?lang=de" class="btn-white reveal" data-i18n="cta.btn">Jetzt bewerben — kostenlos →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© 2025 MVPLY. All rights reserved. · <a href="datenschutz.html" style="color:rgba(255,255,255,0.4)">Datenschutz</a> · <a href="impressum.html" style="color:rgba(255,255,255,0.4)">Impressum</a></p>
+  </div>
+</footer>
+
+<script>
+// ─── SCROLL HELPER ────────────────────────────────────────────────────────
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const navH = document.querySelector('nav').offsetHeight;
+  const top = el.getBoundingClientRect().top + window.pageYOffset - navH - 16;
+  window.scrollTo({ top, behavior: 'smooth' });
+}
+
+// ─── i18n ─────────────────────────────────────────────────────────────────
+const T = {
+  de: {
+    'nav.vault':'The Vault','nav.signal':'Signal Sniper','nav.how':'Wie\'s läuft','nav.cta':'Track Record einreichen →',
+    'hero.title1':'Die Elite','hero.title2':'SaaS Sales Vault.',
+    'hero.sub1':'Hör auf dich zu bewerben.','hero.sub2':'Dein verifizierter Track Record spricht für dich.',
+    'hero.cta1':'Track Record einreichen →','hero.cta2':'🏆 Den Vault erkunden',
+    'hero.ote.label':'Im Vault: Talente mit ø verantwortetem ARR','hero.quota.label':'Ø Quota Attainment',
+    'stats.intro':'Ø Tage bis zum ersten Intro','stats.retention':'Retention Rate','stats.satisfaction':'Hiring Satisfaction',
+    'vault.eyebrow':'The Vault','vault.title':'Elite Sales Player.','vault.sub':'Jede Karte = ein verifizierter Track Record. Kein Bullshit. Nur Zahlen.','vault.cta':'Eigene Karte einreichen →',
+    'roles.eyebrow':'Alle Rollen','roles.title':'Wer ist im Vault?','roles.sub':'Vom SDR bis zum Sales Director — wir matchen alle Elite-Rollen im SaaS Sales.',
+    'roles.claim':'Im Schnitt erzielen unsere Kandidaten 16% mehr OTE als ihre ursprüngliche Erwartung — fair nach Marktwert.',
+    'signal.eyebrow':'Market Signal Sniper','signal.title':'Wir snipen für dich.','signal.sub':'Funding-Runden, Exits, Expansionen — wir lesen die Signale bevor andere wach sind.',
+    'signal.usecase.title':'Von Crunchbase-Meldung zum signierten Vertrag.',
+    'signal.uc.event':'Series B — €42M · B2B Fintech SaaS · DACH Expansion geplant · CEO postet auf LinkedIn über Teamaufbau',
+    'signal.uc.rss':'RSS-Signal landet automatisch bei uns','signal.uc.qualify':'Qualifizierung in unter 2h',
+    'signal.uc.qualify2':'Signal passt: Fintech, Enterprise, DACH-Expansion = hoher Hiring-Need für Senior AE mit MEDDPICC.',
+    'signal.uc.match.arrow':'Vault-Abgleich gegen alle Profile','signal.uc.match':'Präzisions-Match im Vault',
+    'signal.uc.match2':'2 Profile gefunden: Fintech ✓ · Enterprise AE ✓ · MEDDPICC ✓ · DACH-Markt ✓ · 118%+ Quota ✓',
+    'signal.uc.intro.arrow':'Warme, persönliche Intro','signal.uc.result':'Kandidat vorgestellt — 4 Tage vor der ersten Stellenanzeige.',
+    'signal.uc.result2':'Kein Bewerbungsportal. Kein Cold Outreach. Direkter CEO-Kontakt mit vollständigem Kontext.',
+    'signal.sources.label':'Signal-Quellen · täglich automatisch',
+    'how.eyebrow':'So funktioniert\'s','how.title':'Von Track Record zu Match.','how.sub':'Drei Schritte. Kein Bewerbungstheater. Kein Ghosting.',
+    'testimonials.eyebrow':'Was unsere Players sagen','testimonials.title':'Echte Matches. Echte Ergebnisse.','testimonials.sub':'Keine Recruiter-Floskeln. Nur Feedback von Menschen, die gematcht wurden.',
+    'cta.eyebrow':'Ready to Play?','cta.title':'Bereit für den Vault?',
+    'cta.sub':'Reiche deinen Track Record ein. Wir prüfen, verifizieren und matchen dich mit den richtigen Companies.',
+    'cta.btn':'Jetzt bewerben — kostenlos →',
+  },
+  en: {
+    'nav.vault':'The Vault','nav.signal':'Signal Sniper','nav.how':'How it works','nav.cta':'Submit Track Record →',
+    'hero.title1':'The Elite','hero.title2':'SaaS Sales Vault.',
+    'hero.sub1':'Stop applying.','hero.sub2':'Your verified track record speaks for you.',
+    'hero.cta1':'Submit Track Record →','hero.cta2':'🏆 Explore the Vault',
+    'hero.ote.label':'In the Vault: Talent with ø managed ARR','hero.quota.label':'Ø Quota Attainment',
+    'stats.intro':'Ø Days to First Intro','stats.retention':'Retention Rate','stats.satisfaction':'Hiring Satisfaction',
+    'vault.eyebrow':'The Vault','vault.title':'Elite Sales Players.','vault.sub':'Every card = a verified track record. No BS. Just numbers.','vault.cta':'Submit your card →',
+    'roles.eyebrow':'All Roles','roles.title':'Who\'s in the Vault?','roles.sub':'From SDR to Sales Director — we match all elite SaaS sales roles.',
+    'roles.claim':'On average, our candidates achieve 16% more OTE than their initial expectation — fair market value.',
+    'signal.eyebrow':'Market Signal Sniper','signal.title':'We snipe for you.','signal.sub':'Funding rounds, exits, expansions — we read the signals before others wake up.',
+    'signal.usecase.title':'From Crunchbase alert to signed contract.',
+    'signal.uc.event':'Series B — €42M · B2B Fintech SaaS · DACH expansion planned · CEO posts on LinkedIn about team growth',
+    'signal.uc.rss':'RSS signal lands automatically with us','signal.uc.qualify':'Qualified in under 2h',
+    'signal.uc.qualify2':'Signal fits: Fintech, Enterprise, DACH expansion = high hiring need for Senior AE with MEDDPICC.',
+    'signal.uc.match.arrow':'Vault matched against all profiles','signal.uc.match':'Precision match in the Vault',
+    'signal.uc.match2':'2 profiles found: Fintech ✓ · Enterprise AE ✓ · MEDDPICC ✓ · DACH market ✓ · 118%+ Quota ✓',
+    'signal.uc.intro.arrow':'Warm, personal introduction','signal.uc.result':'Candidate introduced — 4 days before the first job posting.',
+    'signal.uc.result2':'No application portal. No cold outreach. Direct CEO contact with full context.',
+    'signal.sources.label':'Signal sources · automated daily',
+    'how.eyebrow':'How it works','how.title':'From Track Record to Match.','how.sub':'Three steps. No application theater. No ghosting.',
+    'testimonials.eyebrow':'What our players say','testimonials.title':'Real Matches. Real Results.','testimonials.sub':'No recruiter fluff. Just feedback from people who got matched.',
+    'cta.eyebrow':'Ready to Play?','cta.title':'Ready for the Vault?',
+    'cta.sub':'Submit your track record. We review, verify and match you with the right companies.',
+    'cta.btn':'Apply now — free →',
+  }
+};
+
+let lang = 'de';
+function setLang(l) {
+  lang = l;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent === l.toUpperCase()));
+  document.querySelectorAll('[data-i18n]').forEach(el => { if (T[l][el.dataset.i18n]) el.textContent = T[l][el.dataset.i18n]; });
+  // Update all join.html links to carry the chosen language
+  document.querySelectorAll('a[href^="join.html"]').forEach(a => {
+    a.href = 'join.html?lang=' + l;
+  });
+  renderSignalSteps(); renderHowSteps(); renderTestimonials();
+}
+
+// ─── DATA ────────────────────────────────────────────────────────────────
+const CARDS = [
+  { name:'Max S.', role:'Senior Account Executive', target:'€650K', quota:'118%', segment:'Enterprise', methodology:'MEDDPICC', cycle:'2–3 Monate', crm:'Salesforce', vertical:'Fintech', xp:'6 Jahre', certs:['MEDDPICC','Salesforce'], powerScore:94, rarity:'legendary', rarityLabel:'⭐ Legendary' },
+  { name:'Sarah K.', role:'VP Sales', target:'€7.2M Team', quota:'132%', segment:'Mid-Market', methodology:'Challenger', cycle:'6–8 Wochen', crm:'HubSpot', vertical:'HRTech', xp:'9 Jahre', certs:['Challenger','HubSpot'], powerScore:97, rarity:'legendary', rarityLabel:'⭐ Legendary' },
+  { name:'Tim R.', role:'Account Executive', target:'€420K', quota:'109%', segment:'Mid-Market', methodology:'SPIN Selling', cycle:'3–4 Monate', crm:'Pipedrive', vertical:'MarTech', xp:'4 Jahre', certs:['SPIN','Apollo'], powerScore:82, rarity:'epic', rarityLabel:'💎 Epic' },
+  { name:'Lena M.', role:'Customer Success Manager', target:'€3.2M NRR', quota:'142% NRR', segment:'Enterprise', methodology:'QBR-Driven', cycle:'Ongoing', crm:'Gainsight', vertical:'Cybersecurity', xp:'5 Jahre', certs:['Gainsight','CSM'], powerScore:91, rarity:'epic', rarityLabel:'💎 Epic' },
+  { name:'Jonas B.', role:'SDR Lead', target:'80 MQLs/Mo', quota:'156%', segment:'SMB', methodology:'SNAP Selling', cycle:'Prospecting', crm:'Salesloft', vertical:'PropTech', xp:'2 Jahre', certs:['LinkedIn','Salesloft'], powerScore:75, rarity:'rare', rarityLabel:'🔷 Rare' },
+  { name:'Nina P.', role:'Sales Engineer', target:'€900K Supported', quota:'111%', segment:'Enterprise', methodology:'Technical MEDDIC', cycle:'4–6 Monate', crm:'Salesforce', vertical:'DevTools', xp:'5 Jahre', certs:['AWS','Gong'], powerScore:88, rarity:'rare', rarityLabel:'🔷 Rare' },
+];
+
+function renderCards() {
+  document.getElementById('cards-grid').innerHTML = CARDS.map(c => `
+  <div class="card ${c.rarity} reveal">
+    <div class="card-rarity-bar"></div>
+    <div class="card-header">
+      <div><div class="card-role">${c.role}</div><div class="card-target">${c.target}</div></div>
+      <div class="card-rarity-badge">${c.rarityLabel}</div>
+    </div>
+    <div class="card-art">
+      <div class="card-art-inner">
+        <div class="card-main-stat-big">${c.quota}</div>
+        <div class="card-art-label">Quota Attainment</div>
+      </div>
+      <div class="card-seal"><div class="card-seal-icon">🏆</div><div class="card-seal-text">VALID.<br>TRACK<br>RECORD</div></div>
+    </div>
+    <div class="card-stats">
+      <div class="card-stat-row"><div class="card-stat-icon">🎯</div><div><div class="card-stat-key">Segment</div><div class="card-stat-val">${c.segment}</div></div></div>
+      <div class="card-stat-row"><div class="card-stat-icon">🧠</div><div><div class="card-stat-key">Methodik</div><div class="card-stat-val">${c.methodology}</div></div></div>
+      <div class="card-stat-row"><div class="card-stat-icon">⏳</div><div><div class="card-stat-key">Cycle</div><div class="card-stat-val">${c.cycle}</div></div></div>
+      <div class="card-stat-row"><div class="card-stat-icon">💼</div><div><div class="card-stat-key">CRM</div><div class="card-stat-val">${c.crm}</div></div></div>
+      <div class="card-stat-row"><div class="card-stat-icon">🏛️</div><div><div class="card-stat-key">Vertikal</div><div class="card-stat-val">${c.vertical}</div></div></div>
+      <div class="card-stat-row"><div class="card-stat-icon">⏱️</div><div><div class="card-stat-key">XP</div><div class="card-stat-val">${c.xp}</div></div></div>
+    </div>
+    <div class="card-footer">
+      <div class="card-tags">${c.certs.map(t => `<span class="card-tag">${t}</span>`).join('')}</div>
+      <div class="card-power"><div class="card-power-val">${c.powerScore}</div><div class="card-power-label">PWR</div></div>
+    </div>
+  </div>`).join('');
+  initReveal(); initTilt();
+}
+
+const ROLES = [
+  {icon:'🎯',name:'Account Executive',desc:'AE · SMB / MM / ENT'},
+  {icon:'🌟',name:'VP Sales',desc:'Revenue Leadership'},
+  {icon:'📡',name:'SDR / BDR',desc:'Pipeline Generation'},
+  {icon:'💚',name:'Customer Success',desc:'NRR & Expansion'},
+  {icon:'👑',name:'Head of Sales',desc:'Team & Strategy'},
+  {icon:'⚙️',name:'Sales Engineer',desc:'Technical Selling'},
+  {icon:'🚀',name:'CRO',desc:'Chief Revenue Officer'},
+  {icon:'📊',name:'Sales Director',desc:'Regional & Global'},
+];
+function renderRoles() {
+  document.getElementById('roles-grid').innerHTML = ROLES.map(r => `
+    <div class="role-card reveal"><div class="role-icon">${r.icon}</div><div class="role-name">${r.name}</div><div class="role-desc">${r.desc}</div></div>`).join('');
+}
+
+const SIGNAL_STEPS = {
+  de: [
+    {num:'01',title:'Signal landet im Postfach',desc:'Crunchbase, PitchBook und Dealroom liefern täglich per RSS-Feed neue Funding-Runden, PE-Exits, IPO-Vorbereitungen, M&A-Aktivitäten und Expansionspläne direkt in unser System — vollautomatisch, noch bevor es in der Presse steht.'},
+    {num:'02',title:'Signal wird qualifiziert',desc:'Wir filtern nach Relevanz: Branche, Wachstumsphase, Markt und wahrscheinlicher Hiring-Need. Nur Signale, die echtes Sales-Hiring auslösen, kommen weiter.'},
+    {num:'03',title:'Vault-Abgleich',desc:'Das Signal wird mit den Profilen im Vault gematcht — nach Vertikal, Segment, Methodik und Markt. Kein Gießkannenprinzip. Nur präzise Relevanz.'},
+    {num:'04',title:'Warme Intro — vor der Stellenanzeige',desc:'Der passende Kandidat wird direkt vorgestellt. Persönlich, warm und mit Kontext. Kein Cold Outreach. Keine Bewerbung. Kein Ghosting.'},
+  ],
+  en: [
+    {num:'01',title:'Signal hits our inbox',desc:'Crunchbase, PitchBook and Dealroom deliver new funding rounds, PE exits, IPO preparations, M&A activity and expansion plans daily via RSS feed — fully automated, before it hits the press.'},
+    {num:'02',title:'Signal gets qualified',desc:'We filter by relevance: industry, growth stage, market and likely hiring need. Only signals that trigger real sales hiring move forward.'},
+    {num:'03',title:'Vault matching',desc:'The signal is matched against Vault profiles — by vertical, segment, methodology and market. No spray and pray. Precision only.'},
+    {num:'04',title:'Warm intro — before the job post',desc:'The right candidate is introduced directly. Personal, warm and with context. No cold outreach. No application. No ghosting.'},
+  ]
+};
+function renderSignalSteps() {
+  document.getElementById('signal-steps').innerHTML = SIGNAL_STEPS[lang].map(s => `
+    <div class="signal-step reveal">
+      <div class="step-number">${s.num}</div>
+      <div><div class="step-title">${s.title}</div><div class="step-desc">${s.desc}</div></div>
+    </div>`).join('');
+  initReveal();
+}
+
+const HOW_STEPS = {
+  de: [
+    {num:'1',title:'Track Record einreichen',desc:'Füll das Formular aus. Quota, Tools, Methodik — alles, was dich als Top-Performer auszeichnet.'},
+    {num:'2',title:'Prüfung & Karte',desc:'Wir prüfen und freigeben deinen Track Record. Deine Gamer-Karte wird erstellt.'},
+    {num:'3',title:'Gematcht werden',desc:'Wenn ein Signal matcht, stellen wir dich direkt vor. Warm. Persönlich. Relevant.'},
+  ],
+  en: [
+    {num:'1',title:'Submit Track Record',desc:'Fill out the form. Quota, tools, methodology — everything that makes you a top performer.'},
+    {num:'2',title:'Review & Card',desc:'We review and approve your track record. Your gamer card gets created.'},
+    {num:'3',title:'Get Matched',desc:'When a signal matches, we intro you directly. Warm. Personal. Relevant.'},
+  ]
+};
+function renderHowSteps() {
+  document.getElementById('how-steps').innerHTML = HOW_STEPS[lang].map(s => `
+    <div class="how-step reveal">
+      <div class="how-num">${s.num}</div>
+      <div class="how-title">${s.title}</div>
+      <div class="how-desc">${s.desc}</div>
+    </div>`).join('');
+  initReveal();
+}
+
+const TESTIMONIALS = {
+  de: [
+    {av:'av1',initials:'MF',quote:'Ich hab mich nie beworben. MVPLY hat mich direkt an einen Series-B CEO vorgestellt — innerhalb von 12 Tagen war ich gesigned. So sollte Recruiting funktionieren.',name:'Markus F.',jobtitle:'Senior Account Executive',niche:'Fintech · Enterprise'},
+    {av:'av2',initials:'JL',quote:'Als VP Sales wollte ich keinen Headhunter, der meinen CV rumschickt. MVPLY hat mein Track Record für mich sprechen lassen — und mir genau den richtigen Move präsentiert.',name:'Julia L.',jobtitle:'VP Sales',niche:'HRTech · DACH'},
+    {av:'av3',initials:'TK',quote:'Das Vault-Konzept ist genial. Meine Zahlen sprechen für mich, nicht mein Bewerbungsschreiben. Ich wurde gematcht, bevor die Stelle überhaupt ausgeschrieben war.',name:'Thomas K.',jobtitle:'CRO',niche:'MarTech · Scale-Up'},
+  ],
+  en: [
+    {av:'av1',initials:'MF',quote:'I never applied. MVPLY introduced me directly to a Series-B CEO — within 12 days I was signed. This is how recruiting should work.',name:'Markus F.',jobtitle:'Senior Account Executive',niche:'Fintech · Enterprise'},
+    {av:'av2',initials:'JL',quote:'As VP Sales I didn\'t want a headhunter spreading my CV around. MVPLY let my track record speak for itself — and presented me exactly the right move.',name:'Julia L.',jobtitle:'VP Sales',niche:'HRTech · DACH'},
+    {av:'av3',initials:'TK',quote:'The Vault concept is brilliant. My numbers speak for me, not a cover letter. I was matched before the role was even posted.',name:'Thomas K.',jobtitle:'CRO',niche:'MarTech · Scale-Up'},
+  ]
+};
+function renderTestimonials() {
+  document.getElementById('testimonials-grid').innerHTML = TESTIMONIALS[lang].map(t => `
+    <div class="testimonial-card reveal">
+      <div class="testimonial-stars">${'<span class="star">★</span>'.repeat(5)}</div>
+      <p class="testimonial-quote">"${t.quote}"</p>
+      <div class="testimonial-author">
+        <div class="author-avatar ${t.av}">${t.initials}</div>
+        <div>
+          <div class="author-name">${t.name}</div>
+          <div class="author-meta">${t.jobtitle}</div>
+          <span class="author-niche">${t.niche}</span>
+        </div>
+      </div>
+    </div>`).join('');
+  initReveal();
+}
+
+// ─── REVEAL & TILT ────────────────────────────────────────────────────────
+function initReveal() {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el => obs.observe(el));
+}
+function initTilt() {
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      card.style.transform = `translateY(-6px) scale(1.02) rotateX(${-y*8}deg) rotateY(${x*8}deg)`;
+    });
+    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+  });
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────
+renderCards();
+renderRoles();
+renderSignalSteps();
+renderHowSteps();
+renderTestimonials();
+initReveal();
+</script>
+</body>
+</html>
