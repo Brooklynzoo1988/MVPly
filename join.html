@@ -915,31 +915,55 @@ TRACKED.forEach(id => {
 });
 document.getElementById('consent').addEventListener('change', updateProgress);
 
-// ─── FORM SUBMIT ──────────────────────────────────────────────────────────
-document.getElementById('join-form').addEventListener('submit', function(e) {
+document.getElementById('join-form').addEventListener('submit', async function(e) {
   e.preventDefault();
 
-  // Basic validation
-  const name = document.getElementById('f-name').value.trim();
-  const email = document.getElementById('f-email').value.trim();
-  const rolle = document.getElementById('f-rolle').value;
-  const quota = document.getElementById('f-quota').value.trim();
-  if (!name || !email || !rolle || !quota) {
-    alert('Bitte fülle alle Pflichtfelder aus (Name, E-Mail, Rolle, Quota).');
+  const form = e.target;
+  const btn = document.getElementById('submit-btn');
+  const label = document.getElementById('submit-label');
+
+  // Pflichtfelder-Check (Name, Email, Rolle, Quota, Datenschutz)
+  if (!form.checkValidity()) {
+    alert(urlLang === 'de' ? 'Bitte fülle alle Pflichtfelder aus.' : 'Please fill all required fields.');
     return;
   }
 
-  const btn = document.getElementById('submit-btn');
+  // Button sperren
   btn.disabled = true;
-  document.getElementById('submit-label').textContent = JT[urlLang]['submit.loading'];
+  label.textContent = JT[urlLang]['submit.loading'];
 
-  // Simulate submission (replace with real backend/Formspree call)
-  setTimeout(() => {
-    document.getElementById('join-form').style.display = 'none';
-    document.getElementById('success-screen').classList.add('show');
-    document.getElementById('progress-fill').style.width = '100%';
-    document.getElementById('progress-text').textContent = '100%';
-  }, 1200);
+  // Daten sammeln
+  const formData = new FormData(form);
+  
+  // Wichtig: Dateien aus dem Array (Zeile 895) mitsenden
+  files.forEach((file, index) => {
+    formData.append(`anhang_${index}`, file);
+  });
+
+  try {
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      // Erfolg: Formular verstecken, Success-Screen zeigen
+      form.style.display = 'none';
+      document.getElementById('success-screen').classList.add('show');
+      document.getElementById('progress-fill').style.width = '100%';
+      document.getElementById('progress-text').textContent = '100%';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      alert('Fehler beim Senden. Bitte prüfe deine Internetverbindung.');
+      btn.disabled = false;
+      label.textContent = JT[urlLang]['submit.btn'];
+    }
+  } catch (error) {
+    alert('Verbindungsproblem. Bitte versuche es später erneut.');
+    btn.disabled = false;
+    label.textContent = JT[urlLang]['submit.btn'];
+  }
 });
 </script>
 </body>
